@@ -68,24 +68,6 @@ public class DrivePlugin implements FlutterPlugin, MethodCallHandler, ActivityAw
             Channel.PERMISSION_METHOD_CHANNEL);
     }
 
-    // public static void registerWith(final Registrar registrar) {
-        final Activity activity = registrar.activity();
-        final BinaryMessenger messenger = registrar.messenger();
-
-        final MethodChannel channel = new MethodChannel(messenger, Channel.DRIVE_METHOD_CHANNEL);
-        channel.setMethodCallHandler(new DrivePlugin());
-
-        final EventChannel progressChannel = new EventChannel(messenger, Channel.PROGRESS_CHANNEL);
-        progressChannel.setStreamHandler(new ProgressStreamHandler(registrar.context()));
-
-        final EventChannel batchChannel = new EventChannel(messenger, Channel.BATCH_CHANNEL);
-        batchChannel.setStreamHandler(new BatchStreamHandler(registrar.context()));
-
-        final MethodChannel permissionChannel = new MethodChannel(messenger, Channel.PERMISSION_METHOD_CHANNEL);
-        final PermissionController permissionController = new PermissionController(activity);
-        permissionChannel.setMethodCallHandler(permissionController);
-        registrar.addRequestPermissionsResultListener(permissionController);
-    }
 
     @Override
     public void onMethodCall(@NonNull final MethodCall call, @NonNull final Result result) {
